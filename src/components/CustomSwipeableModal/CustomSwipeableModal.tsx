@@ -1,6 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
-  Animated, LayoutChangeEvent, PanResponder, TouchableOpacity, View, ViewStyle,
+  Animated,
+  GestureResponderEvent,
+  LayoutChangeEvent,
+  TouchableOpacity,
+  View,
+  ViewStyle,
 } from 'react-native';
 import styles from './styles';
 import { getFlexDirectionOfModalContainer } from '../../utils/modal';
@@ -34,6 +44,7 @@ const CustomSwipeableModal: React.FC<IProps> = (props: IProps) => {
     width: number;
     height: number;
   } | null>(null);
+  const initialTouchCoordinates = useRef({ x: 0, y: 0 });
 
   const handleModalOpenAnimation = useCallback(() => {
     switch (direction) {
@@ -164,18 +175,59 @@ const CustomSwipeableModal: React.FC<IProps> = (props: IProps) => {
     }
   }, [isVisible]);
 
+  const handleOnTouchStart = useCallback((event: GestureResponderEvent) => {
+    initialTouchCoordinates.current = {
+      x: event.nativeEvent.pageX,
+      y: event.nativeEvent.pageY,
+    }
+  }, []);
+
+  const handleOnTouchEnd = useCallback((event: GestureResponderEvent) => {
+    // If the swipe action is to close the modal, then check for the conditions and handle modal close appropriately
+    switch (direction) {
+      case 'left':
+        // If swipe is towards left, close the modal
+        if (initialTouchCoordinates.current.x - event.nativeEvent.pageX > 20) {
+          onClose();
+        }
+        break;
+      case 'right':
+        if (event.nativeEvent.pageX - initialTouchCoordinates.current.x > 20) {
+          onClose();
+        }
+        break;
+      case 'bottom':
+        if (event.nativeEvent.pageY - initialTouchCoordinates.current.y > 20) {
+          onClose();
+        }
+        break;
+      case 'top':
+        if (initialTouchCoordinates.current.y - event.nativeEvent.pageY > 20) {
+          onClose();
+        }
+        break;
+      default:
+        break;
+    }
+    initialTouchCoordinates.current = { x: 0, y: 0 }; // Resetting the initial touch coordinates
+  }, [direction]);
+
   // If Modal is not visible, simply return null for optimisation purpose
   if (!internalIsVisible) {
     return null;
   }
 
   return (
-    <View style={[
-      styles.container,
-      {
-        flexDirection: getFlexDirectionOfModalContainer(direction),
-      }
-    ]}>
+    <View
+      style={[
+        styles.container,
+        {
+          flexDirection: getFlexDirectionOfModalContainer(direction),
+        }
+      ]}
+      onTouchStart={handleOnTouchStart}
+      onTouchEnd={handleOnTouchEnd}
+    >
       {
         direction === 'left' || direction === 'top' ? (
           <>
