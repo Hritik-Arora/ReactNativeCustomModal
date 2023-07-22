@@ -1,3 +1,5 @@
+[CustomSwipeModal.webm](https://github.com/Hritik-Arora/ReactNativeCustomModal/assets/41345450/a46a5bca-8f8b-4cda-a31b-2cfef671b5e0)
+
 # React Native Custom Modal
 A custom React Native Modal implementation. The Modal supports the following functionalities:-
 
