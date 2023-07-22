@@ -1,5 +1,15 @@
-# ReactNativeCustomModal
-A custom React Native Modal implementation
+# React Native Custom Modal
+A custom React Native Modal implementation. The Modal supports the following functionalities:-
+
+Support sliding from all directions (i.e. Top, Bottom, Left and Right).
+● Support child components.
+● Opening and Closing of Modal should be animated
+● Support closing on backdrop press. This should be configurable using prop.
+● Support closing on sliding in the direction of opening - i.e. if modal is opened from top it should close back to top only.
+
+The Modal has been made just with the React Native APIs, and no library and Native side code has been used.
+
+Video for reference:- https://drive.google.com/file/d/1hLXKu945_85hsIjJq9JpzF-hNXPlhOjZ/view?usp=drivesdk
 
 # Getting Started
 
