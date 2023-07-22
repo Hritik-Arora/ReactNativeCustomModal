@@ -187,22 +187,22 @@ const CustomSwipeableModal: React.FC<IProps> = (props: IProps) => {
     switch (direction) {
       case 'left':
         // If swipe is towards left, close the modal
-        if (initialTouchCoordinates.current.x - event.nativeEvent.pageX > 20) {
+        if (initialTouchCoordinates.current.x - event.nativeEvent.pageX > 50) {
           onClose();
         }
         break;
       case 'right':
-        if (event.nativeEvent.pageX - initialTouchCoordinates.current.x > 20) {
+        if (event.nativeEvent.pageX - initialTouchCoordinates.current.x > 50) {
           onClose();
         }
         break;
       case 'bottom':
-        if (event.nativeEvent.pageY - initialTouchCoordinates.current.y > 20) {
+        if (event.nativeEvent.pageY - initialTouchCoordinates.current.y > 50) {
           onClose();
         }
         break;
       case 'top':
-        if (initialTouchCoordinates.current.y - event.nativeEvent.pageY > 20) {
+        if (initialTouchCoordinates.current.y - event.nativeEvent.pageY > 50) {
           onClose();
         }
         break;
