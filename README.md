@@ -1,5 +1,3 @@
-[CustomSwipeModal.webm](https://github.com/Hritik-Arora/ReactNativeCustomModal/assets/41345450/a46a5bca-8f8b-4cda-a31b-2cfef671b5e0)
-
 # React Native Custom Modal
 A custom React Native Modal implementation. The Modal supports the following functionalities:-
 
@@ -14,6 +12,9 @@ d) Support closing on backdrop press. This should be configurable using prop.
 e) Support closing on sliding in the direction of opening - i.e. if modal is opened from top it should close back to top only.
 
 The Modal has been made just with the React Native APIs, and no library and Native side code has been used.
+
+[CustomSwipeModal.webm](https://github.com/Hritik-Arora/ReactNativeCustomModal/assets/41345450/a46a5bca-8f8b-4cda-a31b-2cfef671b5e0)
+
 
 Video for reference:- https://drive.google.com/file/d/1hLXKu945_85hsIjJq9JpzF-hNXPlhOjZ/view?usp=drivesdk
 
